@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+
+ul {
+  background-color: gray;
+  padding: 10px;
+}
+
+li {
+  display: inline;
+  list-style-type: none;  
+  padding: 0px 50px;
+  }
+
+a {
+  color: white;
+}
