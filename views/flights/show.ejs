@@ -29,7 +29,6 @@
                 <td><%= ticket.seat %></td>
                 <td><%= ticket.price %></td>
                 <td>
-                  <!--LOOK HERE!!-->
                   <form action="/flights/<%= flight._id %>/tickets/<%= ticket._id %>?_method=DELETE" method="POST">
                   <button>X</button>
                   </form>
@@ -40,9 +39,21 @@
       <% } else { %>
         <h3>No Tickets Yet</h3> 
       <% } %> 
-    </main>
     </div>
+    <div>Current Destinations:</div>
+      <ul>
+      <%- flight.currentDestinations.map(p => `<li>${p.airport}</li>`).join('') %>
+      </ul>
   </section>
+
+  <h2>Add New Destination</h2>
+  <form id="add-destination-to-current-destinations" action="/flights/<%= flight._id %>/destinations" method="POST">
+    <select name="destinationId">
+      <%- destinationsNotPresent.map(p => `<option value="${p._id}">${p.airport}</option>`).join('') %>
+    </select>
+    <button type="submit">Add to Current Destinations</button>
+  </form>
+  
 
   <h2>Add New Ticket</h2>
   <form action="/flights/<%= flight._id %>/tickets"  method="POST"> 

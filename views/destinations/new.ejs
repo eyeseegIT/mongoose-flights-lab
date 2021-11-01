@@ -1,0 +1,33 @@
+<%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/destinations/new.css" />
+<%- include('../partials/nav') %>
+
+<main>
+	<h1><%= title %></h1>
+  <form id="add-destination-form" action="/destinations" method="POST">
+    <label for="destination-input">Destination:</label>
+    <input type="text" name="airport" id="destination-input"> 
+    <button type="submit">Add</button>
+  </form><br>
+
+    <table>
+      <thead>
+        <tr>
+          <th>All Destinations:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% destinations.forEach(function(destination) { %>
+          <tr>
+            <td><%= destination.airport %></td>
+            <td></td>
+            <td>
+              <form action="/destinations/<%= destination._id %>?_method=DELETE" method="POST">
+                <button>X</button>
+              </form>
+          </tr>
+        <% }) %>
+    </table> 
+</main>
+
+<%- include('../partials/footer') %>
