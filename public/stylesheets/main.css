@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+nav {
+  background-color: blue;
+}
+
+nav a {
+  color: lightblue;
+  padding: 0px 50px;
+}

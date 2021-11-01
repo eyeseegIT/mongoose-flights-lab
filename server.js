@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import("./config/database.js")
+import methodOverride from "method-override"
 
 // import routers
 import { router as indexRouter } from './routes/index.js'
@@ -22,6 +23,7 @@ app.set(
 app.set('view engine', 'ejs')
 
 // middleware
+app.use(methodOverride('_method')) // IS IT HERE?? or in mounted routers below?
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

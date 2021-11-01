@@ -1,11 +1,11 @@
 import { Flight } from "../models/flight.js"
 
 function index(req, res) {
-  Flight.find({}, function(error, flights) {
+  Flight.find({}, function(err, flights) {
     console.log(flights)
     res.render("flights/index", {
       flights: flights,
-      error: error,
+      error: err,
       title: "List of Flights"
     })
   })
@@ -51,10 +51,27 @@ function createTicket(req, res) {
   })
 }
 
+function deleteFlight(req, res) {
+  Flight.findByIdAndDelete(req.params.id, function(err, flight) {
+    res.redirect("/flights")
+  })
+}
+
+function deleteTicket(req, res) { // LOOK HERE!!
+  Flight.findById(req.params.flightId, function(err, flight) {
+    flight.tickets.remove({_id: req.params.ticketId})
+    flight.save(function(err) {
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+}
+
 export {
   index,
   newFlight as new,
   create,
   show,
-  createTicket
+  createTicket,
+  deleteFlight as delete,
+  deleteTicket
 }
