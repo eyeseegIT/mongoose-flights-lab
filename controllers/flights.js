@@ -36,7 +36,7 @@ function create(req, res) { //POST new flight
 function show(req, res) {
   Flight.findById(req.params.id) 
     .populate("currentDestinations").exec(function(err, flight) {
-      Destination.find({_id: {$nin: flight.destinations}}, function(err, destinationsNotPresent) {
+      Destination.find({_id: {$nin: flight.currentDestinations}}, function(err, destinationsNotPresent) {
         res.render("flights/show", {
           title: "Flight Details",
           flight: flight,
@@ -72,7 +72,16 @@ function deleteTicket(req, res) {
 
 function addToCurrentDestinations(req, res) {
   Flight.findById(req.params.id, function(err, flight) {
-    flight.currentDestinations.push(req.body.destinationId) // DOUBLE CHECK THIS
+    flight.currentDestinations.push(req.body.destinationId)
+    flight.save(function(err) {
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+}
+
+function deleteCurrDest(req, res) {
+  Flight.findById(req.params.flightId, function(err, flight) {
+    flight.currentDestinations.remove({_id: req.params.currDestId})
     flight.save(function(err) {
       res.redirect(`/flights/${flight._id}`)
     })
@@ -87,5 +96,6 @@ export {
   createTicket,
   deleteFlight as delete,
   deleteTicket,
-  addToCurrentDestinations
+  addToCurrentDestinations,
+  deleteCurrDest
 }

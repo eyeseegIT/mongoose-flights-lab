@@ -22,11 +22,14 @@ router.post("/:id/tickets", flightsCtrl.createTicket)
 // localhost:3000/flights/:id/destinations - POST
 router.post("/:id/destinations", flightsCtrl.addToCurrentDestinations)
 
-// localhost:3000/movies/:id - DELETE
+// localhost:3000/flights/:id - DELETE
 router.delete("/:id", flightsCtrl.delete)
 
-// localhost:3000/movies/:id/tickets - DELETE
+// localhost:3000/flights/:id/tickets - DELETE
 router.delete("/:flightId/tickets/:ticketId", flightsCtrl.deleteTicket)
+
+// localhost:3000/flights/:id/destination/:id - DELETE
+router.delete("/:flightId/destination/:currDestId", flightsCtrl.deleteCurrDest)
 
 export {
   router
