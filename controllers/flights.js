@@ -81,7 +81,7 @@ function addToCurrentDestinations(req, res) {
 
 function deleteCurrDest(req, res) {
   Flight.findById(req.params.flightId, function(err, flight) {
-    flight.currentDestinations.remove({_id: req.params.currDestId})
+    flight.currentDestinations.remove({_id: req.params.destinationId})
     flight.save(function(err) {
       res.redirect(`/flights/${flight._id}`)
     })

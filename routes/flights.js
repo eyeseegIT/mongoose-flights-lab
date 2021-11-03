@@ -28,8 +28,8 @@ router.delete("/:id", flightsCtrl.delete)
 // localhost:3000/flights/:id/tickets - DELETE
 router.delete("/:flightId/tickets/:ticketId", flightsCtrl.deleteTicket)
 
-// localhost:3000/flights/:id/destination/:id - DELETE
-router.delete("/:flightId/destination/:currDestId", flightsCtrl.deleteCurrDest)
+// localhost:3000/flights/:id/destinations/:id - DELETE
+router.delete("/:flightId/destinations/:destinationId", flightsCtrl.deleteCurrDest)
 
 export {
   router

@@ -48,11 +48,11 @@
             <% flight.currentDestinations.forEach(function(dest) { %> 
               <tr>
                 <td><%= dest.airport %></td>
-                <!-- <td>
-                  <form action="/flights/<%= flight._id %>/currentDestinations/<%= dest._id %>?_method=DELETE" method="POST">
+                <td>
+                  <form action="/flights/<%= flight._id %>/destinations/<%= dest._id %>?_method=DELETE" method="POST">
                   <button>X</button>
                   </form>
-                </td> -->
+                </td>
               </tr>
         <% }) %> 
           </tbody>
